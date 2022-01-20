@@ -1,7 +1,9 @@
 ﻿#include<iostream>
 #include<array>
 #include<vector>
+#include<deque>
 #include<list>
+
 
 using namespace std;
 using std::cout;
@@ -12,14 +14,33 @@ using std::endl;
 //#define STL_ARRAY
 //#define STL_VECTOR
 //#define STL_VECTOR2
+//#define STL_DEQUE
+#define STL_LIST
+//template<typename T>void print(const vector<T>& vec)
+//{
+//	for (typename vector<T>::const_iterator it = vec.begin(); it != vec.end();  it++)
+//	{
+//		cout << *it << tab;
+//	}
+//	cout << endl;
+//}
+//template<typename T>void print(const list<T>& list)
+//{
+//	for (typename list<T>::const_iterator it = list.begin(); it != list.end(); it++)
+//	{
+//		cout << *it << tab;
+//	}
+//	cout << endl;
+//}
 
-template<typename T>void print(const vector<T>& vec)
+template<typename T>
+void PrintList(const list<T> lst)
 {
-	for (typename vector<T>::const_iterator it = vec.begin(); it != vec.end();  it++)
+	list <int>:: iterator it;
+	for (auto i = lst.cbegin(); i != lst.end(); ++i)
 	{
-		cout << *it << tab;
+		cout << *i << tab;
 	}
-	cout << endl;
 }
 
 void main()
@@ -127,7 +148,54 @@ void main()
 
 #ifdef STL_DEQUE
 
+	std::deque<int> deque = { 3,5,8,13,21 };
+	deque.push_back(34);
+	deque.push_back(55);
+	deque.push_back(89);
+	deque.push_front(2);
+	deque.push_front(1);
+	deque.push_front(1);
+	deque.push_front(0);
+
+	cout << "Полученный массив: ";
+
+	for (int i = 0; i < deque.size(); i++)
+	{
+		cout << deque[i] << tab;
+	}
+	cout << endl;
 #endif // STL_DEQUE
 
+#ifdef STL_LIST
+	list<int> list = { 0,1,1,2,3,5,8,13,21 };
+	cout << "Исходный массив: " << endl;
+	PrintList(list);
+	cout << endl;
+
+	cout << "Метод Insert: " << endl;
+	int index;
+	int value;
+	cout << "Введите индекс добавляемого объекта: \t"; cin >> index;
+	cout << "Введите значение добавляемого объекта: \t"; cin >> value;
 	
+	std::list<int>::iterator iterator = list.begin();
+	for (int i = 0; i < index; i++)iterator++;
+	list.insert(iterator, value);
+	
+	PrintList(list);
+	cout << endl;
+
+	cout << "Метод Erase:" << endl;
+	int erase_index;
+	cout << "Введите индекс удаляемого объекта: \t"; cin >> erase_index;
+	
+	std::list<int>::iterator indexplace = list.begin();
+	for (int i = 0; i < erase_index; i++)iterator++;
+	list.erase(indexplace);
+
+	PrintList(list);
+	cout << endl;
+	
+#endif // STL_LIST
+
 }
