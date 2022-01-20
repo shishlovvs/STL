@@ -189,9 +189,9 @@ void main()
 	int erase_index;
 	cout << "Введите индекс удаляемого объекта: \t"; cin >> erase_index;
 	
-	std::list<int>::iterator indexplace = list.begin();
+	std::list<int>::iterator indexnumber = list.begin();
 	for (int i = 0; i < erase_index; i++)iterator++;
-	list.erase(indexplace);
+	list.erase(indexnumber);
 
 	PrintList(list);
 	cout << endl;
